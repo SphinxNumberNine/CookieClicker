@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity {
 
     ImageView cookieImageView;
+    ImageView grandmaImageView;
     TextView cookieTextView;
     AtomicInteger cookieCount = new AtomicInteger(0);
     RelativeLayout layout;
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cookieImageView = (ImageView) findViewById(R.id.cookieImageView);
+        grandmaImageView = (ImageView) findViewById(R.id.imageView);
         cookieTextView = (TextView) findViewById(R.id.cookiesTextView);
         layout = (RelativeLayout) findViewById(R.id.relativeLayout);
-        cookieImageView.setImageResource(R.drawable.cookie);
         cookieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,13 +65,15 @@ public class MainActivity extends AppCompatActivity {
                 });
                 translateAnimation.setDuration(3000);
                 plusOne.startAnimation(translateAnimation);
+
             }
         });
+        if(cookieCount.get() > 50){
+            grandmaImageView.setVisibility(View.VISIBLE);
+        }
         Thread passiveIncome = new Thread(){
             public void run(){
-                if(cookieCount.get() > 50){
 
-                }
             }
         };
     }
